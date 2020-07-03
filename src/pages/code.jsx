@@ -1,6 +1,5 @@
 import styles from './index.less';
 import QRCode from 'qrcode.react';
-import { Icon } from 'antd-mobile';
 import back_icon from '@/assets/back-icon.png';
 import school_icon from '@/assets/school-icon.png';
 import more_icon from '@/assets/more-icon.png';
@@ -23,7 +22,6 @@ export default function() {
           </div>
         </div>
       </div>
-      {/* <div className={styles['divider']}></div> */}
       <div className={styles['code-con']}>
         <img src={school_icon} alt="" className={styles['school-pic']} />
         <p className={styles['prompt-title']}>

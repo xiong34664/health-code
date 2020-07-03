@@ -1,5 +1,5 @@
 import styles from './index.less';
-import { SearchBar, Button, WhiteSpace, WingBlank } from 'antd-mobile';
+import { SearchBar} from 'antd-mobile';
 
 export default function() {
   return (
