@@ -1,20 +1,27 @@
+/**
+ * title: 申请人领取-学生校园通行码领取
+ */
+import { connect } from 'dva';
 import styles from './index.less';
 import QRCode from 'qrcode.react';
 import back_icon from '@/assets/back-icon.png';
 import school_icon from '@/assets/school-icon.png';
 import more_icon from '@/assets/more-icon.png';
+import { router } from 'umi';
 
-export default function() {
+function CodePage(props) {
+  const { name, idNumber, school, studentId, startTime, endTime } = props;
+
   return (
     <div className={styles['basic-layout']}>
       <div className={styles['header-nav']}>
         <div className={styles['nav-left']}>
-          <div className={styles['back-btn']}>
+          <div className={styles['back-btn']} onClick={router.goBack}>
             <img src={back_icon} alt="" />
           </div>
         </div>
         <div className={styles['nav-title']}>
-          <div className={styles["btn-default"]}>通过</div>
+          <div className={styles['btn-default']}>通过</div>
         </div>
         <div className={styles['nav-right']}>
           <div className={styles['more-btn']}>
@@ -28,17 +35,18 @@ export default function() {
           Everyone is responsible for epidemic prevention on campus
         </p>
         <div className={styles['item-text']}>
-          金鑫<span className={styles['mark-code']}>校园通行码</span>
+          {name}
+          <span className={styles['mark-code']}>校园通行码</span>
           <span className={styles['mark-es']}>Campus Pass Code</span>
         </div>
-        <div className={styles['item-text']}>计算机科学与技术学院、软件学院</div>
-        <div className={styles['item-idNumber']}>360401199810162716</div>
+        <div className={styles['item-text']}>{school || '计算机科学与技术学院、软件学院'}</div>
+        <div className={styles['item-idNumber']}>{idNumber}</div>
         <div className={styles['time-lable']}>生成时间 Generation time:</div>
-        <div className={styles['time-con']}>2020-06-21 00:00:00</div>
+        <div className={styles['time-con']}>{startTime}</div>
         <div className={styles['time-lable']}>到期时间 Expire time:</div>
-        <div className={styles['time-con']}>2020-06-21 23:59:59</div>
+        <div className={styles['time-con']}>{endTime}</div>
         <QRCode
-          value="2111912086_金鑫"
+          value={`${studentId}_${name}`}
           bgColor={'rgba(0,0,0,0)'}
           fgColor={'rgb(57,131,202)'}
           className={styles['qrcode-img']}
@@ -55,3 +63,5 @@ export default function() {
     </div>
   );
 }
+
+export default connect(state => state.global)(CodePage);

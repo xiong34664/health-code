@@ -11,7 +11,6 @@ export default {
   // ],
   history: 'hash',
   publicPath: './',
-  base: './',
   extraPostCSSPlugins: [px2viewport({ viewportWidth: 750, exclude: [/(node_modules)/i] })],
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
@@ -19,7 +18,9 @@ export default {
       'umi-plugin-react',
       {
         antd: true,
-        dva: false,
+        dva: {
+          immer: true,
+        },
         dynamicImport: false,
         title: 'code',
         dll: false,
